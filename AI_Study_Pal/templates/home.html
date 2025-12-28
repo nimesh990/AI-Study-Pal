@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Study Pal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">🎓 AI Study Pal</a>
+
+    <div class="d-flex">
+      {% if username %}
+        <span class="navbar-text me-3">👋 Hi, {{ username }}</span>
+        <a href="/my_plans" class="btn btn-sm btn-light me-2">📚 My Plans</a>
+        <a href="/logout" class="btn btn-sm btn-outline-light">🚪 Logout</a>
+      {% else %}
+        <a href="/login" class="btn btn-sm btn-light me-2">🔑 Login</a>
+        <a href="/register" class="btn btn-sm btn-outline-light">✨ Register</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h1 class="h3 text-center mb-1">📅 Create Your Study Plan</h1>
+      <p class="text-center text-muted mb-4">Plan your studies efficiently with AI assistance</p>
+
+      <form action="/generate" method="POST" class="mt-3">
+        <div class="mb-3">
+          <label class="form-label">Subject</label>
+          <input type="text" name="subject" class="form-control" placeholder="e.g. DBMS" required>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Hours per day</label>
+            <input type="number" name="hours" class="form-control" min="1" max="12" value="2" required>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Start date</label>
+            <input type="date" name="start_date" class="form-control" value="{{ default_date }}" required>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Start time</label>
+            <input type="time" name="start_time" class="form-control" value="18:00" required>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Days</label>
+            <input type="number" name="days" class="form-control" min="1" max="60" value="7" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Break (minutes) between sessions</label>
+            <input type="number" name="break_min" class="form-control" min="0" max="180" value="0" required>
+            <div class="form-text">0 means no break; study will be one continuous session.</div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Weekly off day</label>
+            <select name="weekly_off" class="form-select">
+              <option value="none" selected>None</option>
+              <option value="mon">Monday</option>
+              <option value="tue">Tuesday</option>
+              <option value="wed">Wednesday</option>
+              <option value="thu">Thursday</option>
+              <option value="fri">Friday</option>
+              <option value="sat">Saturday</option>
+              <option value="sun">Sunday</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Generate Plan</button>
+        <a href="/stats" class="btn btn-outline-secondary ms-2">View Stats</a>
+      </form>
+
+      <hr class="my-4">
+
+      <h5 class="mb-3">🚀 Quick Actions</h5>
+      <div class="d-flex gap-2 flex-wrap">
+        <a href="/summary" class="btn btn-outline-dark">📝 Summary</a>
+        <a href="/tips" class="btn btn-outline-dark">💡 Tips</a>
+        <a href="/resources" class="btn btn-outline-dark">📚 Resources</a>
+        <a href="/api_quiz" class="btn btn-outline-dark">🎯 API Quiz</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

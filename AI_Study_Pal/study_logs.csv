@@ -1,0 +1,11 @@
+subject,hours,start_date,start_time,days,break_min,weekly_off
+subject,hours,,,,0,none
+math,3,,,,0,none
+hindi,4,,,,0,none
+physics,5,,,,0,none
+physics,5,,,,0,none
+math,3,,,,0,none
+math,3,,,,0,none
+physics,1,,,,0,none
+physics,1,,,,0,none
+physics,2,2025-12-24,18:00,7,6,fri

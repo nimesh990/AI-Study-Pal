@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Quiz - Select Subject</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">🎓 AI Study Pal</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h1 class="card-title text-center">📝 API Quiz</h1>
+          <p class="text-center text-muted">Test your knowledge with our quiz API</p>
+
+          {% if error %}
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
+          {% endif %}
+
+          <form action="/api_quiz" method="POST" class="mt-4">
+            <div class="mb-4">
+              <label class="form-label">Choose Subject:</label>
+              <select name="subject" class="form-select" required>
+                <option value="">-- Select a subject --</option>
+                <option value="gk">🌍 General Knowledge</option>
+                <option value="computer">💻 Computer Science</option>
+                <option value="science">🔬 Science & Nature</option>
+                <option value="history">📜 History</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Start Quiz</button>
+          </form>
+
+          <div class="mt-3 text-center">
+            <a href="/" class="btn btn-outline-secondary">← Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
